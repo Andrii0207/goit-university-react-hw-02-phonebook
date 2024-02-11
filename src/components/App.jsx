@@ -12,20 +12,33 @@ export class App extends Component {
   };
 
   addContact = ({ name, number }) => {
+    const { contacts } = this.state;
+
     const newContact = {
       id: nanoid(),
       name,
       number,
     };
 
-    this.setState(prevState => ({
-      contacts: [newContact, ...prevState.contacts],
-    }));
+    contacts.find(
+      item =>
+        item.name.toLowerCase().trim() === newContact.name.toLowerCase().trim()
+    )
+      ? alert('You already have that name')
+      : this.setState(prevState => ({
+          contacts: [newContact, ...prevState.contacts],
+        }));
   };
 
   handlerFilter = e => {
     const { value } = e.currentTarget;
     this.setState({ filter: value });
+  };
+
+  deleteContact = id => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(item => item.id !== id),
+    }));
   };
 
   render() {
@@ -44,7 +57,10 @@ export class App extends Component {
         <Filter value={this.state.filter} onChange={this.handlerFilter} />
         <>
           {this.state.contacts.length !== 0 ? (
-            <ContactList contacts={filteredContacts} />
+            <ContactList
+              contacts={filteredContacts}
+              onDelete={this.deleteContact}
+            />
           ) : (
             <Notificalion />
           )}
