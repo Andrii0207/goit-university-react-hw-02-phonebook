@@ -1,3 +1,11 @@
-export default function ContactList() {
-  return <div>ContactList component</div>;
+export default function ContactList({ contacts }) {
+  return (
+    <ul>
+      {contacts.map(({ id, name, number }) => (
+        <li key={id}>
+          {name}: {number}
+        </li>
+      ))}
+    </ul>
+  );
 }
