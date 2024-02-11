@@ -1,3 +1,9 @@
-export default function Notificalion() {
-  return <p>There is no contacts</p>;
+import PropTypes from 'prop-types';
+
+export default function Notificalion({ message }) {
+  return <p>{message}</p>;
 }
+
+Notificalion.propTypes = {
+  message: PropTypes.string.isRequired,
+};

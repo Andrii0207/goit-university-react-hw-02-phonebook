@@ -3,11 +3,16 @@ import { nanoid } from 'nanoid';
 import ContactList from './ContactList/ContactList';
 import ContactForm from './ContactForm/ContactForm';
 import Notificalion from './Notification/Notification';
-import Filter from './ContactList/Filter/Filter';
+import Filter from './Filter/Filter';
 
 export class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
     filter: '',
   };
 
@@ -24,7 +29,7 @@ export class App extends Component {
       item =>
         item.name.toLowerCase().trim() === newContact.name.toLowerCase().trim()
     )
-      ? alert('You already have that name')
+      ? alert(`${name} already is in contacts`)
       : this.setState(prevState => ({
           contacts: [newContact, ...prevState.contacts],
         }));
@@ -36,15 +41,17 @@ export class App extends Component {
   };
 
   deleteContact = id => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(item => item.id !== id),
+    this.setState(({ contacts }) => ({
+      contacts: contacts.filter(item => item.id !== id),
     }));
   };
 
   render() {
-    const normalizedFilter = this.state.filter.toLowerCase();
+    const { contacts, filter } = this.state;
 
-    const filteredContacts = this.state.contacts.filter(item =>
+    const normalizedFilter = filter.toLowerCase();
+
+    const filteredContacts = contacts.filter(item =>
       item.name.toLowerCase().includes(normalizedFilter)
     );
 
@@ -54,15 +61,15 @@ export class App extends Component {
         <ContactForm onSubmit={this.addContact} />
 
         <h2>Contacts</h2>
-        <Filter value={this.state.filter} onChange={this.handlerFilter} />
+        <Filter value={filter} onChange={this.handlerFilter} />
         <>
-          {this.state.contacts.length !== 0 ? (
+          {contacts.length !== 0 ? (
             <ContactList
               contacts={filteredContacts}
               onDelete={this.deleteContact}
             />
           ) : (
-            <Notificalion />
+            <Notificalion message="There are no any contacts" />
           )}
         </>
       </div>
