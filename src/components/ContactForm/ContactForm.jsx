@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
+import { IoPersonAdd } from 'react-icons/io5';
 import { nanoid } from 'nanoid';
 import { Component } from 'react';
+import { Button, Form, Input, LabelName } from './ContactForm.styled';
 
 export default class ContactForm extends Component {
   state = {
@@ -31,37 +33,36 @@ export default class ContactForm extends Component {
     const { name, number } = this.state;
 
     return (
-      <form onSubmit={this.onSubmitForm}>
-        <label htmlFor={this.nameInputId}>
-          Name
-          <input
-            id={this.nameInputId}
-            type="text"
-            name="name"
-            value={name}
-            onChange={this.handleNameChange}
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
-        </label>
-        <br />
-        <label htmlFor={this.numberInputId}>
-          Number
-          <input
-            id={this.numberInputId}
-            type="tel"
-            name="number"
-            value={number}
-            onChange={this.handleNameChange}
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-        </label>
+      <Form onSubmit={this.onSubmitForm}>
+        <LabelName htmlFor={this.nameInputId}>Name</LabelName>
+        <Input
+          id={this.nameInputId}
+          type="text"
+          name="name"
+          value={name}
+          onChange={this.handleNameChange}
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+        />
 
-        <button type="submit">Add contact</button>
-      </form>
+        <LabelName htmlFor={this.numberInputId}>Number</LabelName>
+        <Input
+          id={this.numberInputId}
+          type="tel"
+          name="number"
+          value={number}
+          onChange={this.handleNameChange}
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+        />
+
+        <Button type="submit">
+          Add contact
+          <IoPersonAdd style={{ paddingLeft: '10px' }} />
+        </Button>
+      </Form>
     );
   }
 }

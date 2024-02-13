@@ -1,17 +1,29 @@
 import PropTypes from 'prop-types';
+import { FaDeleteLeft, FaAddressBook } from 'react-icons/fa6';
+
+import {
+  ButtonDelete,
+  ContactItem,
+  ContactListWrapper,
+} from './ContactList.styled';
 
 export default function ContactList({ contacts, onDelete }) {
   return (
-    <ul>
+    <ContactListWrapper>
       {contacts.map(({ id, name, number }) => (
-        <li key={id}>
+        <ContactItem key={id}>
           {name}: {number}
-          <button type="button" onClick={() => onDelete(id)}>
-            Delete
-          </button>
-        </li>
+          <ButtonDelete type="button" onClick={() => onDelete(id)}>
+            <FaDeleteLeft
+              style={{
+                width: '20px',
+                height: '20px',
+              }}
+            />
+          </ButtonDelete>
+        </ContactItem>
       ))}
-    </ul>
+    </ContactListWrapper>
   );
 }
 

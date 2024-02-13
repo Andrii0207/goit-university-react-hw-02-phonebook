@@ -1,9 +1,11 @@
 import { Component } from 'react';
+import { FaAddressBook } from 'react-icons/fa6';
 import { nanoid } from 'nanoid';
 import ContactList from './ContactList/ContactList';
 import ContactForm from './ContactForm/ContactForm';
 import Notificalion from './Notification/Notification';
 import Filter from './Filter/Filter';
+import { ContactListTitle, Title, Wrapper } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -56,11 +58,14 @@ export class App extends Component {
     );
 
     return (
-      <div>
-        <h1>Phonebook</h1>
+      <Wrapper>
+        <Title>
+          Phonebook
+          <FaAddressBook />
+        </Title>
         <ContactForm onSubmit={this.addContact} />
 
-        <h2>Contacts</h2>
+        <ContactListTitle>Contacts</ContactListTitle>
         <Filter value={filter} onChange={this.handlerFilter} />
         <>
           {contacts.length !== 0 ? (
@@ -72,7 +77,7 @@ export class App extends Component {
             <Notificalion message="There are no any contacts" />
           )}
         </>
-      </div>
+      </Wrapper>
     );
   }
 }
