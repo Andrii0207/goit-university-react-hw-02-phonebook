@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { FaDeleteLeft, FaAddressBook } from 'react-icons/fa6';
+import { FaDeleteLeft } from 'react-icons/fa6';
 
 import {
   ButtonDelete,
