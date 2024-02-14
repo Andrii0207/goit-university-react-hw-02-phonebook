@@ -37,7 +37,7 @@ font-size: 20px;
 font-weight: 600;
 background-color: darkcyan;
 color: white;
-margin-bottom: 40px;
+margin-bottom: 50px;
 
 
 &:hover{

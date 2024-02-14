@@ -11,7 +11,7 @@ height: auto;
 margin-top: 50px;
 background-color: darkslategray;
 border-radius: 7px;
-padding: 50px;
+padding: 30px 50px;
 `
 
 export const Title = styled.h1`
@@ -26,5 +26,4 @@ export const ContactListTitle = styled.h2`
 color: white;
 font-size: 20px;
 margin: 0;
-
 `
