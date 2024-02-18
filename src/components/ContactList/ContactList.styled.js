@@ -13,7 +13,6 @@ gap: 10px;
 export const ContactItem = styled.li`
 display: flex;
 gap: 25px;
-/* flex-direction: column; */
 justify-content: flex-start;
 align-items: center;
 justify-content: space-between;
@@ -36,6 +35,7 @@ cursor: pointer;
 &:hover,
 &:focus {
     background-color: lightsalmon;
+    /* & svg{color: white} */
 }
 `
 
